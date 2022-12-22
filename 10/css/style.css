@@ -26,9 +26,15 @@ body {
 }
 
 img {
-  max-width: 100%;
   height: auto;
-  object-fit: contain;
+  display: block;
+  object-fit: cover;
+}
+@media (min-width: 768px) {
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @font-face {
@@ -218,7 +224,7 @@ img {
 
 .main-slider {
   position: relative;
-  background-image: url("../img/svg/slider-text.svg"), url("../img/svg/slider-bottom.svg"), url("../img/slider.webp");
+  background-image: url("../img/svg/slider-text.svg"), url("../img/svg/slider-bottom.svg"), url("../img/slider.jpg");
   background-size: 282px, auto, cover;
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-position: top 90px center, bottom -0.5px center, center;
@@ -231,7 +237,7 @@ img {
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
   .main-slider {
-    background-image: url("../img/svg/slider-text.svg"), url("../img/svg/slider-bottom-desktop.svg"), url("../img/slider@2x.webp");
+    background-image: url("../img/svg/slider-text.svg"), url("../img/svg/slider-bottom-desktop.svg"), url("../img/slider@2x.jpg");
   }
 }
 @media (min-width: 768px) {
@@ -243,7 +249,7 @@ img {
 }
 @media (min-width: 1200px) {
   .main-slider {
-    background-image: url("../img/svg/slider-text.svg"), url("../img/svg/slider-bottom-desktop.svg"), url("../img/slider.webp");
+    background-image: url("../img/svg/slider-text.svg"), url("../img/svg/slider-bottom-desktop.svg"), url("../img/slider.jpg");
     background-position: top 90px center, bottom -1px center, center;
     margin-bottom: 59px;
   }
@@ -331,6 +337,10 @@ img {
 @media (min-width: 768px) {
   .main-reasons__list-box {
     display: flex;
+  }
+}
+@media (min-width: 768px) {
+  .main-reasons__list-box--reverse {
     flex-direction: row-reverse;
   }
 }
@@ -405,15 +415,13 @@ img {
   margin: 0;
   margin-bottom: 17px;
 }
-.main-reasons__item-image-box img {
-  display: block;
+.main-reasons__item-image {
   height: 260px;
-  width: auto;
-  object-fit: cover;
 }
 @media (min-width: 768px) {
-  .main-reasons__item-image-box img {
-    height: 256px;
+  .main-reasons__item-image {
+    height: 100%;
+    min-height: 256px;
   }
 }
 .main-reasons__item-ico {
@@ -711,12 +719,13 @@ img {
 }
 .main-footer__social-list {
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
   column-gap: 6px;
   padding: 0;
   margin: 0;
   margin-bottom: 40px;
-  width: 210px;
+  max-width: 264px;
   justify-content: center;
 }
 @media (min-width: 768px) {

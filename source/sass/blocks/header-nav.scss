@@ -1,9 +1,8 @@
 @use '../global/use.scss';
 
 .main-nav {
-  height: 56px;
+  min-height: 56px;
   position: relative;
-
 
   &__toggle {
     position: absolute;
@@ -34,6 +33,20 @@
     &--opened &__toggle {
       background-image: url('../img/svg/toggle-close.svg');
       width: 22px;
+    }
+
+    &__toggle {
+      &:hover {
+        opacity: 0.6;
+      }
+
+      &:focus-visible {
+        outline: 2px solid use.$color-black;
+      }
+
+      &:active {
+        opacity: 0.3;
+      }
     }
 
     &--closed &__toggle {
@@ -69,7 +82,6 @@
       z-index: 0;
       display: block;
     }
-
   }
 
   &__list {
@@ -80,85 +92,132 @@
     @include use.media-tablet {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
   }
 
   &__item {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: use.$color-aqua;
-    mix-blend-mode: normal;
-    box-shadow: 0px 1px 0px rgba(1, 1, 1, 0.2), inset 0px 1px 0px rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(1, 1, 1, 0.2);
 
-    &:first-child {
-      box-shadow: 0px 1px 0px rgba(1, 1, 1, 0.2);
+    @include use.media-mobile-only {
+      background-color: use.$color-aqua;
+      mix-blend-mode: normal;
+      box-shadow: 0 1px 0 rgba(1, 1, 1, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid rgba(1, 1, 1, 0.2);
 
-      @include use.media-tablet {
-        box-shadow: none;
-      }
-    }
-
-    &:last-child {
-      box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.2);
-      border: none;
-
-      @include use.media-tablet {
-        box-shadow: none;
+      &:first-child {
+        box-shadow: 0 1px 0 rgba(1, 1, 1, 0.2);
       }
 
-      &::after {
-        content: "";
-        width: 100%;
-        height: 7px;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
-      }
+      &:last-child {
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        border: none;
 
-      @include use.media-tablet {
         &::after {
-          display: none;
+          content: "";
+          width: 100%;
+          height: 7px;
+          background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
+          margin-top: -7px;
         }
+      }
+
+      &:hover {
+        background-color: use.$color-aqua-dark;
+      }
+
+      &:active {
+        background-color: use.$color-aqua-darker;
       }
     }
 
     @include use.media-tablet {
-      min-height: 56px;
-      max-width: 153px;
+      min-width: 144px;
+      max-width: 154px;
       flex-grow: 1;
       background-color: transparent;
       box-shadow: none;
       border-bottom: none;
 
       &:nth-child(3) {
-        margin-left: auto;
+        margin-left: calc(100% - 617px);
+      }
+    }
+
+    @include use.media-middle {
+      min-width: 173px;
+      max-width: 183px;
+
+      &:nth-child(3) {
+        margin-left: calc(100% - 880px);
       }
     }
 
     @include use.media-desktop {
-      max-width: 200px;
-      padding-left: 20px;
-      padding-right: 20px;
+      min-width: 220px;
+      max-width: 240px;
+
+      &:nth-child(3) {
+        margin-left: calc(100% - 960px);
+      }
     }
   }
 
   &__link {
-    @include use.font-bold;
-    color: use.$color-white;
     text-decoration: none;
     text-transform: uppercase;
-    padding: 17px 0 12px 0;
+    text-align: center;
+
+    @include use.media-mobile-only {
+      @include use.font-bold;
+      color: use.$color-white;
+      padding: 18px 40px 11px;
+      min-width: 240px;
+      margin-left: -2px;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      &:focus-visible {
+        outline: 2px solid use.$color-black;
+      }
+
+      &:active {
+        opacity: 0.3;
+      }
+
+      &--current {
+        color: use.$color-link-current;
+      }
+    }
 
     @include use.media-tablet {
       @include use.font-normal;
       font-weight: 700;
       color: use.$color-black;
-      padding: 0;
+      padding: 19px 20px 16px 20px;
+
+      &:hover {
+        color: use.$color-aqua;
+      }
+
+      &:focus-visible {
+        outline: 2px solid use.$color-black;
+      }
+
+      &:active {
+        color: rgba(1, 1, 1, 0.3);
+      }
 
       @include use.media-tablet {
         &--current {
           color: use.$color-link-current;
+          margin-left: 2px;
         }
       }
     }
